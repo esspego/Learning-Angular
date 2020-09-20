@@ -11,11 +11,14 @@ import { from } from 'rxjs';
 import { HttpRequestComponent } from './pages/http-request/http-request.component';
 import { ItemComponent } from './pages/item/item.component';
 
-import { AngularFireAnalyticsModule } from '@angular/fire/analytics';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireModule } from '@angular/fire';
 import { environment } from '../environments/environment';
 import { ForumComponent } from './pages/forum/forum.component';
+import { ChatsComponent } from './components/chats/chats.component';
+import { ForumService } from './services/forum.service';
+import { LoginComponent } from './components/login/login.component';
+
 
 @NgModule({
   declarations: [
@@ -24,7 +27,9 @@ import { ForumComponent } from './pages/forum/forum.component';
     HomeComponent,
     HttpRequestComponent,
     ItemComponent,
-    ForumComponent
+    ForumComponent,
+    ChatsComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -33,10 +38,11 @@ import { ForumComponent } from './pages/forum/forum.component';
     ReactiveFormsModule,
     HttpClientModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFirestoreModule,
-    AngularFireAnalyticsModule
+    AngularFirestoreModule
   ],
-  providers: [],
+  providers: [
+    ForumService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

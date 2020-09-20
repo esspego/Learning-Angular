@@ -1,9 +1,10 @@
-<p>forum works!</p>
-<div>
-    <ul>
-        <li class="text" *ngFor="let item of chats | async">
-            {{item.message}}
-        </li>
-    </ul>
-
+<div class="container main-container">
+    <h1>Foro con Firebase</h1>
+    <div class="col-md-12 text-right" *ngIf="_fs.user.uid">
+        <button (click)="_fs.logout()" class="btn btn-outline-danger">Cerrar sesión</button>
+    </div>
+    <app-login *ngIf="!_fs.user.uid"></app-login>
+    <div *ngIf="_fs.user.uid" class="chat-window">
+        <app-chats></app-chats>
+    </div>
 </div>
