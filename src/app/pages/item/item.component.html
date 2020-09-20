@@ -1,0 +1,54 @@
+<div class="container">
+    <h1>Producto <small>Nombre del producto</small> </h1>
+    <hr>
+    <div class="row text-right">
+        <div class="col">
+            <button routerLink="/http-request" class="btn btn-danger">
+        <i class="fa fa-arrow-left"></i>
+        Volver
+      </button>
+        </div>
+    </div>
+</div>
+<div class="row p-4 animated fadeIn faster">
+    <div class="col">
+        <form (ngSubmit)="saveProduct(f)" #f="ngForm">
+            <div class="form-group">
+                <label> Firebase ID</label>
+                <input [(ngModel)]="product.id" name="id" type="text" class="form-control" disabled="disabled" placeholder="Firebase ID">
+                <small class="form-text text-muted">Este campo es autogenerado</small>
+            </div>
+            <div class="form-group">
+                <label> Nombre</label>
+                <input [(ngModel)]="product.name" name="name" type="text" class="form-control" placeholder="Nombre del producto" required>
+            </div>
+            <div class="form-group">
+                <label> Descripción</label>
+                <input [(ngModel)]="product.description" name="description" type="text" class="form-control" placeholder="Descripción" required>
+            </div>
+            <div class="form-group">
+                <label> Precio</label>
+                <input [(ngModel)]="product.price" name="price" type="number" class="form-control" placeholder="Precio" required>
+            </div>
+            <div class="form-group">
+                <label> En stock</label>
+                <br>
+                <button *ngIf="product.available" (click)="product.available = false" class="btn btn-outline-success w-50" type="button">
+                <i class="fa fa-smile-wink"></i>
+                Disponible
+                </button>
+                <button *ngIf="!product.available" (click)="product.available = true" class="btn btn-outline-danger w-50" type="button">
+                <i class="fa fa-dizzy"></i>
+                  Agotado
+                </button>
+            </div>
+            <hr>
+            <div class="form-group text-center">
+                <button type="submit" class="btn btn-primary w-25">
+                <i class="fa fa-save"></i>
+                Guardar
+              </button>
+            </div>
+        </form>
+    </div>
+</div>

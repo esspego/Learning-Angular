@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "angular-learning-8d8ed": {
+      "hosting": {
+        "allInAngular": [
+          "angular-learning-8d8ed"
+        ]
+      }
+    }
+  }
+}

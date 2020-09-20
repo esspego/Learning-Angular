@@ -1,0 +1,101 @@
+<form autocomplete="off" [formGroup]="form" (ngSubmit)="saveForm()">
+    <div class="container mt-5">
+        <div class="row">
+            <h4 class="pb-3">Formularios <small>Reactivos</small></h4>
+            <hr>
+            <div class="col-12 d-flex flex-column">
+                <div class="form-group row">
+                    <label class="col-2 col-form-label">Usuario</label>
+                    <div class="col-10">
+                        <input class="form-control" type="text" placeholder="Usuario" formControlName="user" [class.is-invalid]="inputInvalid('user')">
+                        <small *ngIf="inputInvalid('user')" class="text-danger">Debe tener almenos 5 letras</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 d-flex flex-column">
+                <div class="form-group row">
+                    <label class="col-2 col-form-label">Nombre</label>
+                    <div class="col-10">
+                        <input class="form-control" type="text" placeholder="Nombre" formControlName="name" [class.is-invalid]="inputInvalid('name')">
+                        <small *ngIf="inputInvalid('name')" class="text-danger">Debe tener almenos 5 letras</small>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-2 col-form-label">Apellido</label>
+                    <div class="col-10">
+                        <input class="form-control" type="text" placeholder="Apellido" formControlName="surname" [class.is-invalid]="inputInvalid('surname')">
+                        <small *ngIf="inputInvalid('surname')" class="text-danger">Debe tener almenos 5 letras</small>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-2 col-form-label">Correo</label>
+                    <div class="col-10">
+                        <input class="form-control" type="email" placeholder="Correo" formControlName="email" [class.is-invalid]="inputInvalid('email')">
+                        <small *ngIf="inputInvalid('email')" class="text-danger">Debe ser un correo válido</small>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-2 col-form-label">Contraseña</label>
+                    <div class="col-10">
+                        <input class="form-control" type="password" placeholder="Contraseña" formControlName="pass1" [class.is-invalid]="inputInvalid('pass1')">
+                        <small *ngIf="inputInvalid('pass1')" class="text-danger">Debe tener almenos 5 letras</small>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-2 col-form-label">Repetir Contraseña</label>
+                    <div class="col-10">
+                        <input class="form-control" type="password" placeholder="Repetir Contraseña" formControlName="pass2" [class.is-invalid]="passInvalid">
+                        <small *ngIf="passInvalid" class="text-danger">Las contraseñas no coinciden</small>
+                    </div>
+                </div>
+                <div class="form-group row" formGroupName="address">
+                    <label class="col-2 col-form-label">Dirección</label>
+                    <div class="col-10">
+                        <input class="form-control" type="text" placeholder="Distrito" formControlName="district" [class.is-invalid]="inputInvalid('address.district')">
+                        <small *ngIf="inputInvalid('address.district')" class="text-danger">Debe tener almenos 5 letras</small>
+                        <input class="form-control mt-2" type="text" placeholder="Ciudad" formControlName="city" [class.is-invalid]="inputInvalid('address.city')">
+                        <small *ngIf="inputInvalid('address.city')" class="text-danger">Debe tener almenos 5 letras</small>
+                    </div>
+                </div>
+                <div class="col-12 mt-4">
+                    <table class="table">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>ID</th>
+                                <th>Hobbies</th>
+                                <th>Borrar</th>
+                            </tr>
+                        </thead>
+                        <tbody formArrayName="hobbies">
+                            <tr *ngFor="let control of hobbies.controls; let i = index">
+                                <td>{{ i + 1}}</td>
+                                <td>
+                                    <input class="form-control" type="text" [formControlName]="i">
+                                </td>
+                                <td>
+                                    <button class="btn btn-danger" (click)="deleteHobbie(i)">Borrar</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <button class="btn btn-primary mt-3 mb-5 btn-block" type="button" (click)="addHobbie()">+ Agregar</button>
+                </div>
+
+                <div class="d-flex ">
+                    <button type="submit" class="btn btn-outline-primary w-100 mx-auto">
+                    Guardar
+                  </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+<hr>
+<pre>
+  Estado del formulario: {{ form.valid }}
+  <br>
+  Status: {{form.status}}
+</pre>
+<pre>
+  {{form.value | json}}
+</pre>
